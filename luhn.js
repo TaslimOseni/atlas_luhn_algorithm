@@ -1,24 +1,35 @@
-function checkValidity(value){
+function check(){
 
-	if(/[^0-9-\s]+/.test(value)){
-		return false;
+    var value = document.getElementById("cardNumber").value;
+
+    var textview = document.getElementById('outputText');
+    
+
+		var sumTotal = 0, theDigit = 0, atSecondDigit = false;
+
+		value = value.replace(/\D/g, "");
+
+		for(var n = value.length - 1; n >= 0; n--){
+			var exactChar = value.charAt(n),
+			theDigit = parseInt(exactChar, 10);
+
+			if(atSecondDigit){
+				if((theDigit *= 2) > 9){
+					theDigit -= 9;
+				}
+			}
+
+			sumTotal += theDigit;
+			atSecondDigit = !atSecondDigit;
 		}
-		
-	var nCheck = 0, nDigit = 0, bEven = false;
 
-	value = value.replace(/\D/g, "");
 
-	for(var n = value.length - 1; n >= 0; n--) {
-		var cDigit = value.charAt(n),
-			  nDigit = parseInt(cDigit, 10);
-
-		if(bEven){
-			if((nDigit *= 2) > 9) nDigit -= 9;
+		if(sumTotal % 10 == 0){
+			textview.innerHTML = "Valid";
+			textview.style.color = "#00FF00";	
 		}
-
-		nCheck += nDigit;
-		bEven = !bEven;
-	}
-
-	return (nCheck % 10) == 0;
+		else{
+			textview.innerHTML = "Invalid";
+			textview.style.color = "#FF0000";	
+		}
 }

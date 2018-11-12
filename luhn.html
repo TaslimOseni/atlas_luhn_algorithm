@@ -8,15 +8,18 @@
 
     <body>
 
+        <script src="luhn.js"></script>
+
+
         <div style="margin: auto; width: 50%; border: 3px solid green; padding: 10px; align-items: center; flex-flow: column; display: flex;">
 
             <h1>Credit card validity test</h1>
             <br />
             <input type="number" style="width: 200px" placeholder="Input your card number" id="cardNumber">
             <br />
-            <button id="performCheck" style="margin-top: 20px">Check validity</button>
+            <button id="performCheck" onclick="check()" style="margin-top: 20px">Check validity</button>
             <br />
-            <p id="outputText">Valid!</p>
+            <p id="outputText"></p>
 
         </div>
 
